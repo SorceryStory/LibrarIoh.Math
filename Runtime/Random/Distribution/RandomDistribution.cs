@@ -19,7 +19,7 @@ namespace SorceressSpell.LibrarIoh.Math
             while (finalDistribution.Sum() + increase <= targetSum)
             {
                 //TODO Toggle for Seeded/Pure Random?
-                int rangeIndex = proceduralRandom.Range(0, distributionRanges.Count);
+                int rangeIndex = proceduralRandom.Next(0, distributionRanges.Count);
 
                 float finalValue = finalDistribution[rangeIndex] + increase;
 

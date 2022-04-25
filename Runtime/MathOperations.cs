@@ -16,64 +16,54 @@ namespace SorceressSpell.LibrarIoh.Math
             return System.Math.Abs(value);
         }
 
-        public static float AbsCeilingFloat(float value)
+        public static float AbsCeiling(float value)
         {
-            if (value < 0) { return FloorFloat(value); }
-            else { return CeilingFloat(value); }
+            return (value < 0) ? Floor(value) : Ceiling(value);
         }
 
-        public static int AbsCeilingInt(float value)
+        public static int AbsCeilingToInt(float value)
         {
-            if (value < 0) { return FloorInt(value); }
-            else { return CeilingInt(value); }
+            return (value < 0) ? FloorToInt(value) : CeilingToInt(value);
         }
 
-        //public static bool Approximately(float a, float b)
-        //{
-        //    return Approximately(a, b, 0.001f);
-        //}
-        public static bool Approximately(float a, float b, float interval)
+        public static bool Approximately(float a, float b, float maxInterval)
         {
-            return (a - b) < interval;
+            return (a - b) <= maxInterval;
         }
 
-        public static float CeilingFloat(float value)
+        public static float Ceiling(float value)
         {
             return (float)System.Math.Ceiling(value);
         }
 
-        public static int CeilingInt(float value)
+        public static int CeilingToInt(float value)
         {
             return (int)System.Math.Ceiling(value);
         }
 
         public static int Clamp(int value, int min, int max)
         {
-            if (value < min) { return min; }
-            else if (value > max) { return max; }
-            else { return value; }
+            return (value < min) ? min : ((value > max) ? max : value);
         }
 
         public static float Clamp(float value, float min, float max)
         {
-            if (value < min) { return min; }
-            else if (value > max) { return max; }
-            else { return value; }
+            return (value < min) ? min : ((value > max) ? max : value);
         }
 
-        public static float FloorFloat(float value)
+        public static float Floor(float value)
         {
             return (float)System.Math.Floor(value);
         }
 
-        public static int FloorInt(float value)
+        public static int FloorToInt(float value)
         {
             return (int)System.Math.Floor(value);
         }
 
-        public static float Lerp(float a, float b, float interpolationValue)
+        public static float Lerp(float startValue, float endValue, float interpolationValue)
         {
-            return a + ((b - a) * interpolationValue);
+            return startValue + (Clamp(interpolationValue, 0f, 1f) * (endValue - startValue));
         }
 
         public static int Max(int x, int y)
@@ -116,26 +106,19 @@ namespace SorceressSpell.LibrarIoh.Math
             return System.Math.Min(x, Min(y, z));
         }
 
-        public static int Modulo(int a, int n)
+        public static int Modulo(int value, int modulus)
         {
-            return (System.Math.Abs(a * n) + a) % n;
+            return (value < 0) ? (((value % modulus) + modulus) % modulus) : (value % modulus);
         }
 
-        public static float Modulo(float a, float n)
+        public static float Modulo(float value, float modulus)
         {
-            //return (System.Math.Abs(a * n) + a) % n;
-
-            float newA = a;
-
-            while (newA < 0) { newA += n; }
-            return newA % n;
+            return (value < 0) ? (((value % modulus) + modulus) % modulus) : (value % modulus);
         }
 
         public static float Normalize(float value, float minValue, float maxValue)
         {
-            value = (value - minValue) / (maxValue - minValue);
-
-            return value;
+            return (value - minValue) / (maxValue - minValue);
         }
 
         public static float Pow(float b, float exp)
@@ -143,71 +126,56 @@ namespace SorceressSpell.LibrarIoh.Math
             return (float)System.Math.Pow(b, exp);
         }
 
-        public static float RoundAwayFromZeroFloat(float value)
+        public static float Round(float value)
+        {
+            return (float)System.Math.Round(value);
+        }
+
+        public static float RoundAwayFromZero(float value)
         {
             return (float)System.Math.Round(value, MidpointRounding.AwayFromZero);
         }
 
-        public static int RoundAwayFromZeroInt(float value)
+        public static int RoundAwayFromZeroToInt(float value)
         {
             return (int)System.Math.Round(value, MidpointRounding.AwayFromZero);
         }
 
-        public static float RoundDecimalPlaces(float value, int decimalPlaces, MidpointRounding MidpointRounding, float modulo)
+        public static float RoundDecimalPlaces(float value, int decimalPlaces, MidpointRounding midpointRounding, float modulo)
         {
-            float newValue = (float)System.Math.Round(value, decimalPlaces, MidpointRounding);
-
+            float newValue = (float)System.Math.Round(value, decimalPlaces, midpointRounding);
             float decimalOffset = (float)System.Math.Pow(10f, decimalPlaces);
 
             newValue *= decimalOffset;
-
             newValue = (float)(System.Math.Round(newValue / modulo) * modulo);
-
             newValue /= decimalOffset;
 
             return newValue;
         }
 
-        public static float RoundFloat(float value)
-        {
-            return (float)System.Math.Round(value);
-        }
-
-        public static int RoundInt(float value)
+        public static int RoundToInt(float value)
         {
             return (int)System.Math.Round(value);
         }
 
-        public static float RoundToInterval(float value, float interval)
-        {
-            return (float)System.Math.Round(value / interval) * interval;
-        }
-
-        public static float RoundToIntervalFloat(float value, float interval)
-        {
-            return (float)System.Math.Round(value / interval) * interval;
-        }
-
-        public static float RoundTowardsZeroFloat(float value)
+        public static float RoundTowardsZero(float value)
         {
             return (float)System.Math.Truncate(value);
         }
 
-        public static int RoundTowardsZeroInt(float value)
+        public static int RoundTowardsZeroToInt(float value)
         {
             return (int)System.Math.Truncate(value);
         }
 
         public static int Sign(int value)
         {
-            if (value < 0) { return -1; }
-            else { return 1; }
+            return value < 0 ? -1 : 1;
         }
 
         public static float Sign(float value)
         {
-            if (value < 0) { return -1; }
-            else { return 1; }
+            return value < 0f ? -1f : 1f;
         }
 
         public static float Sin(float value)
@@ -215,12 +183,12 @@ namespace SorceressSpell.LibrarIoh.Math
             return (float)System.Math.Sin(value);
         }
 
-        public static float TruncateFloat(float value)
+        public static float Truncate(float value)
         {
             return (float)System.Math.Truncate(value);
         }
 
-        public static int TruncateInt(float value)
+        public static int TruncateToInt(float value)
         {
             return (int)System.Math.Truncate(value);
         }

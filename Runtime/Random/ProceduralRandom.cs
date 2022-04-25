@@ -2,13 +2,12 @@ using System;
 
 namespace SorceressSpell.LibrarIoh.Math
 {
-    public class ProceduralRandom
+    public class ProceduralRandom : IRandomRoll<int>, IRandomRoll<float>
     {
         #region Fields
 
-        //TODO Keep only one?
         private readonly Random _random;
-
+        private readonly byte[] bytes = new byte[sizeof(int)];
         private Random _seededRandom;
 
         #endregion Fields
@@ -39,39 +38,44 @@ namespace SorceressSpell.LibrarIoh.Math
 
         #region Methods
 
-        public float FullRageFloat()
+        public int Next(int minValue, int maxValue)
         {
-            return Range(float.MinValue, float.MaxValue);
+            return NextStrategy(_random, minValue, maxValue);
         }
 
-        public float FullRageSeededFloat()
+        public float Next(float minValue, float maxValue)
         {
-            return SeededRange(float.MinValue, float.MaxValue);
+            return NextStrategy(_random, minValue, maxValue);
         }
 
-        public int FullRangeInt()
+        public int NextSeeded(int minValue, int maxValue)
         {
-            return Range(int.MinValue, int.MaxValue);
+            return NextStrategy(_seededRandom, minValue, maxValue);
         }
 
-        public int FullRangeSeededInt()
+        public float NextSeeded(float minValue, float maxValue)
         {
-            return SeededRange(int.MinValue, int.MaxValue);
+            return NextStrategy(_seededRandom, minValue, maxValue);
+        }
+
+        public int RandomRoll(int minValue, int maxValue)
+        {
+            return Next(minValue, maxValue);
+        }
+
+        public float RandomRoll(float minValue, float maxValue)
+        {
+            return Next(minValue, maxValue);
         }
 
         public int Range(int minValue, int maxValue)
         {
-            return _random.Next(minValue, maxValue);
+            return Next(minValue, maxValue);
         }
 
-        //public int SeededNext(int maxValue)
-        //{
-        //    return SeededRange(0, maxValue);
-        //}
         public float Range(float minValue, float maxValue)
         {
-            float baseValue = (float)_random.NextDouble();
-            return MathOperations.Normalize(baseValue, minValue, maxValue);
+            return Next(minValue, maxValue);
         }
 
         public void ReSeed()
@@ -86,37 +90,27 @@ namespace SorceressSpell.LibrarIoh.Math
             _seededRandom = new Random(Seed);
         }
 
-        //public int Next(int maxValue)
-        //{
-        //    return Range(0, maxValue);
-        //}
-        public int SeededRange(int minValue, int maxValue)
+        private int NextStrategy(Random random, int minValue, int maxValue)
         {
-            return _seededRandom.Next(minValue, maxValue);
+            if (maxValue < int.MaxValue)
+            {
+                return random.Next(minValue, maxValue + 1);
+            }
+
+            if (minValue > int.MinValue)
+            {
+                return random.Next(minValue - 1, maxValue) + 1;
+            }
+
+            random.NextBytes(bytes);
+            return BitConverter.ToInt32(bytes, 0);
         }
 
-        public float SeededRange(float minValue, float maxValue)
+        private float NextStrategy(Random random, float minValue, float maxValue)
         {
-            float baseValue = (float)_seededRandom.NextDouble();
-            return MathOperations.Normalize(baseValue, minValue, maxValue);
+            return MathOperations.Lerp((float)random.Next(Int32.MaxValue) / (Int32.MaxValue - 1), minValue, maxValue);
         }
 
         #endregion Methods
-
-        //public Vector2i Position(int width, int height)
-        //{
-        //    int x = Range(0, width);
-        //    int y = Range(0, height);
-
-        //    return new Vector2i(x, y);
-        //}
-
-        //public Vector2i SeededPosition(int width, int height)
-        //{
-        //    int x = SeededRange(0, width);
-        //    int y = SeededRange(0, height);
-
-        //    return new Vector2i(x, y);
-        //}
     }
 }
