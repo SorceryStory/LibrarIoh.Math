@@ -21,6 +21,11 @@ namespace SorceressSpell.LibrarIoh.Math
             return (value < 0) ? Floor(value) : Ceiling(value);
         }
 
+        public static float RoundToNearestMultiplier(float value, float multiplier)
+        {
+            return Round(value / multiplier) * multiplier;
+        }
+
         public static int AbsCeilingToInt(float value)
         {
             return (value < 0) ? FloorToInt(value) : CeilingToInt(value);
@@ -131,6 +136,11 @@ namespace SorceressSpell.LibrarIoh.Math
             return (float)System.Math.Round(value);
         }
 
+        public static float Round(float value, MidpointRounding midpointRounding)
+        {
+            return (float)System.Math.Round(value, midpointRounding);
+        }
+
         public static float RoundAwayFromZero(float value)
         {
             return (float)System.Math.Round(value, MidpointRounding.AwayFromZero);
@@ -156,6 +166,11 @@ namespace SorceressSpell.LibrarIoh.Math
         public static int RoundToInt(float value)
         {
             return (int)System.Math.Round(value);
+        }
+
+        public static int RoundToInt(float value, MidpointRounding midpointRounding)
+        {
+            return (int)System.Math.Round(value, midpointRounding);
         }
 
         public static float RoundTowardsZero(float value)
