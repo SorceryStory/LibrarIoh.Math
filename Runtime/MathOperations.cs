@@ -21,11 +21,6 @@ namespace SorceressSpell.LibrarIoh.Math
             return (value < 0) ? Floor(value) : Ceiling(value);
         }
 
-        public static float RoundToNearestMultiplier(float value, float multiplier)
-        {
-            return Round(value / multiplier) * multiplier;
-        }
-
         public static int AbsCeilingToInt(float value)
         {
             return (value < 0) ? FloorToInt(value) : CeilingToInt(value);
@@ -66,9 +61,38 @@ namespace SorceressSpell.LibrarIoh.Math
             return (int)System.Math.Floor(value);
         }
 
+        public static float InverseLerp(float startValue, float endValue, float interpolationValue)
+        {
+            float range = endValue - startValue;
+
+            if (range == 0f)
+            {
+                return startValue;
+            }
+
+            return (interpolationValue - startValue) / range;
+        }
+
+        public static float LerpMap(float originStartValue, float originEndValue, float targetStartValue, float targetEndValue, float interpolationValue)
+        {
+            float originalRange = originEndValue - originStartValue;
+
+            if (originalRange == 0)
+            {
+                return (targetStartValue + targetEndValue) / 2;
+            }
+
+            return targetStartValue + (interpolationValue - originStartValue) * (targetEndValue - targetStartValue) / originalRange;
+        }
+
         public static float Lerp(float startValue, float endValue, float interpolationValue)
         {
-            return startValue + (Clamp(interpolationValue, 0f, 1f) * (endValue - startValue));
+            return startValue + (interpolationValue * (endValue - startValue));
+        }
+
+        public static float LerpClamp(float startValue, float endValue, float interpolationValue)
+        {
+            return Lerp(startValue, endValue, Clamp(interpolationValue, 0f, 1f));
         }
 
         public static int Max(int x, int y)
@@ -171,6 +195,11 @@ namespace SorceressSpell.LibrarIoh.Math
         public static int RoundToInt(float value, MidpointRounding midpointRounding)
         {
             return (int)System.Math.Round(value, midpointRounding);
+        }
+
+        public static float RoundToNearestMultiplier(float value, float multiplier)
+        {
+            return Round(value / multiplier) * multiplier;
         }
 
         public static float RoundTowardsZero(float value)
