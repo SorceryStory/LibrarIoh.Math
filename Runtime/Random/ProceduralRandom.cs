@@ -108,7 +108,7 @@ namespace SorceressSpell.LibrarIoh.Math
 
         private float NextStrategy(Random random, float minValue, float maxValue)
         {
-            return MathOperations.Lerp((float)random.Next(Int32.MaxValue) / (Int32.MaxValue - 1), minValue, maxValue);
+            return MathOperations.Lerp(minValue, maxValue, (float)random.Next(Int32.MaxValue) / (Int32.MaxValue - 1));
         }
 
         #endregion Methods
