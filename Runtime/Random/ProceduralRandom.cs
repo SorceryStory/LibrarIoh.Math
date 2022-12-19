@@ -6,8 +6,8 @@ namespace SorceressSpell.LibrarIoh.Math
     {
         #region Fields
 
-        private readonly Random _random;
-        private readonly byte[] bytes = new byte[sizeof(int)];
+        private byte[] _bytes;
+        private Random _random;
         private Random _seededRandom;
 
         #endregion Fields
@@ -22,15 +22,13 @@ namespace SorceressSpell.LibrarIoh.Math
 
         public ProceduralRandom()
         {
-            _random = new Random();
-
+            Initialize();
             ReSeed();
         }
 
         public ProceduralRandom(int seed)
         {
-            _random = new Random();
-
+            Initialize();
             ReSeed(seed);
         }
 
@@ -78,6 +76,16 @@ namespace SorceressSpell.LibrarIoh.Math
             return Next(minValue, maxValue);
         }
 
+        public int RangeSeeded(int minValue, int maxValue)
+        {
+            return NextSeeded(minValue, maxValue);
+        }
+
+        public float RangeSeeded(float minValue, float maxValue)
+        {
+            return NextSeeded(minValue, maxValue);
+        }
+
         public void ReSeed()
         {
             Seed = _random.Next(int.MinValue, int.MaxValue);
@@ -88,6 +96,12 @@ namespace SorceressSpell.LibrarIoh.Math
         {
             Seed = seed;
             _seededRandom = new Random(Seed);
+        }
+
+        private void Initialize()
+        {
+            _random = new Random();
+            _bytes = new byte[sizeof(int)];
         }
 
         private int NextStrategy(Random random, int minValue, int maxValue)
@@ -102,8 +116,8 @@ namespace SorceressSpell.LibrarIoh.Math
                 return random.Next(minValue - 1, maxValue) + 1;
             }
 
-            random.NextBytes(bytes);
-            return BitConverter.ToInt32(bytes, 0);
+            random.NextBytes(_bytes);
+            return BitConverter.ToInt32(_bytes, 0);
         }
 
         private float NextStrategy(Random random, float minValue, float maxValue)

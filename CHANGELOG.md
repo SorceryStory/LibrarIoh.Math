@@ -1,5 +1,16 @@
 # Changelog
 
+## [0.4.0] - 2022-12-15
+
+### Added
+
+- New `RangeSeeded` functions to `ProceduralRandom`.
+- `int` version of `Pow` in `MathOperations`.
+
+### Changed
+
+- `ProceduralRandom`'s constructor initialization.
+
 ## [0.3.0] - 2022-12-14
 
 ### Added

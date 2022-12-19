@@ -73,6 +73,16 @@ namespace SorceressSpell.LibrarIoh.Math
             return (interpolationValue - startValue) / range;
         }
 
+        public static float Lerp(float startValue, float endValue, float interpolationValue)
+        {
+            return startValue + (interpolationValue * (endValue - startValue));
+        }
+
+        public static float LerpClamp(float startValue, float endValue, float interpolationValue)
+        {
+            return Lerp(startValue, endValue, Clamp(interpolationValue, 0f, 1f));
+        }
+
         public static float LerpMap(float originStartValue, float originEndValue, float targetStartValue, float targetEndValue, float interpolationValue)
         {
             float originalRange = originEndValue - originStartValue;
@@ -83,16 +93,6 @@ namespace SorceressSpell.LibrarIoh.Math
             }
 
             return targetStartValue + (interpolationValue - originStartValue) * (targetEndValue - targetStartValue) / originalRange;
-        }
-
-        public static float Lerp(float startValue, float endValue, float interpolationValue)
-        {
-            return startValue + (interpolationValue * (endValue - startValue));
-        }
-
-        public static float LerpClamp(float startValue, float endValue, float interpolationValue)
-        {
-            return Lerp(startValue, endValue, Clamp(interpolationValue, 0f, 1f));
         }
 
         public static int Max(int x, int y)
@@ -148,6 +148,11 @@ namespace SorceressSpell.LibrarIoh.Math
         public static float Normalize(float value, float minValue, float maxValue)
         {
             return (value - minValue) / (maxValue - minValue);
+        }
+
+        public static int Pow(int b, int exp)
+        {
+            return (int)System.Math.Pow(b, exp);
         }
 
         public static float Pow(float b, float exp)
