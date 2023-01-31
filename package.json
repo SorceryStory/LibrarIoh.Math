@@ -4,7 +4,7 @@
   "version": "0.4.0",
   "type": "library",
   "unity": "2018.1",
-  "description": "LibrarIoh.Math (https://github.com/SorceressSpell/LibrarIoh.Math)\n\nMath operations and other utilities for LibrarIoh.\n\nDepends on:\n  - LibrarIoh.Core (https://github.com/SorceressSpell/LibrarIoh.Core)",
+  "description": "LibrarIoh.Math (https://github.com/SorceryStory/LibrarIoh.Math)\n\nMath operations and other utilities for LibrarIoh.\n\nDepends on:\n  - LibrarIoh.Core (https://github.com/SorceryStory/LibrarIoh.Core)",
   "dependencies": {
     "com.sorceressspell.librarioh.core": "0.3.0"
   },
