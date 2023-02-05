@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.4.1] - 2023-02-05
+
+### Added
+
+- `PerlinNoise` class.
+
 ## [0.4.0] - 2022-12-15
 
 ### Added
