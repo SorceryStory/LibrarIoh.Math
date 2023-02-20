@@ -1,5 +1,15 @@
 # Changelog
 
+## [0.5.1] - 2023-02-20
+
+### Added
+
+- `MathOperations`: Added new `Round` methods.
+
+### Changed
+
+- `MathOperations`: Reworked most existing  `Round` methods.
+
 ## [0.4.1] - 2023-02-05
 
 ### Added

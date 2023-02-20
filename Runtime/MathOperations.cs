@@ -165,6 +165,40 @@ namespace SorceressSpell.LibrarIoh.Math
             return (float)System.Math.Round(value);
         }
 
+        public static float Round(float value, int decimalPlaces)
+        {
+            return (float)System.Math.Round(value, decimalPlaces);
+        }
+
+        public static float Round(float value, int decimalPlaces, float modulo)
+        {
+            float newValue = Round(value, decimalPlaces);
+            float decimalOffset = Pow(10f, decimalPlaces);
+
+            newValue *= decimalOffset;
+            newValue = Round(newValue / modulo) * modulo;
+            newValue /= decimalOffset;
+
+            return newValue;
+        }
+
+        public static float Round(float value, int decimalPlaces, MidpointRounding midpointRounding)
+        {
+            return (float)System.Math.Round(value, decimalPlaces, midpointRounding);
+        }
+
+        public static float Round(float value, int decimalPlaces, MidpointRounding midpointRounding, float modulo)
+        {
+            float newValue = Round(value, decimalPlaces, midpointRounding);
+            float decimalOffset = Pow(10f, decimalPlaces);
+
+            newValue *= decimalOffset;
+            newValue = Round(newValue / modulo, midpointRounding) * modulo;
+            newValue /= decimalOffset;
+
+            return newValue;
+        }
+
         public static float Round(float value, MidpointRounding midpointRounding)
         {
             return (float)System.Math.Round(value, midpointRounding);
@@ -172,24 +206,12 @@ namespace SorceressSpell.LibrarIoh.Math
 
         public static float RoundAwayFromZero(float value)
         {
-            return (float)System.Math.Round(value, MidpointRounding.AwayFromZero);
+            return Round(value, MidpointRounding.AwayFromZero);
         }
 
         public static int RoundAwayFromZeroToInt(float value)
         {
-            return (int)System.Math.Round(value, MidpointRounding.AwayFromZero);
-        }
-
-        public static float RoundDecimalPlaces(float value, int decimalPlaces, MidpointRounding midpointRounding, float modulo)
-        {
-            float newValue = (float)System.Math.Round(value, decimalPlaces, midpointRounding);
-            float decimalOffset = (float)System.Math.Pow(10f, decimalPlaces);
-
-            newValue *= decimalOffset;
-            newValue = (float)(System.Math.Round(newValue / modulo) * modulo);
-            newValue /= decimalOffset;
-
-            return newValue;
+            return RoundToInt(value, MidpointRounding.AwayFromZero);
         }
 
         public static int RoundToInt(float value)
