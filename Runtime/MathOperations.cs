@@ -92,7 +92,7 @@ namespace SorceressSpell.LibrarIoh.Math
                 return (targetStartValue + targetEndValue) / 2;
             }
 
-            return targetStartValue + (interpolationValue - originStartValue) * (targetEndValue - targetStartValue) / originalRange;
+            return targetStartValue + ((interpolationValue - originStartValue) * (targetEndValue - targetStartValue) / originalRange);
         }
 
         public static int Max(int x, int y)

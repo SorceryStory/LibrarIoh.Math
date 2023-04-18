@@ -1,24 +1,30 @@
 # Changelog
 
+## [0.5.2] - 2023-04-18
+
+### [0.5.2] Changed
+
+- Ran a Code Analysis Tool, made fixes to clean code.
+
 ## [0.5.1] - 2023-02-20
 
-### Added
+### [0.5.1] Added
 
 - `MathOperations`: Added new `Round` methods.
 
-### Changed
+### [0.5.1] Changed
 
 - `MathOperations`: Reworked most existing  `Round` methods.
 
 ## [0.4.1] - 2023-02-05
 
-### Added
+### [0.4.1] Added
 
 - `PerlinNoise` class.
 
 ## [0.4.0] - 2022-12-15
 
-### Added
+### [0.4.0] Added
 
 - New `RangeSeeded` functions to `ProceduralRandom`.
 - `int` version of `Pow` in `MathOperations`.
@@ -29,13 +35,13 @@
 
 ## [0.3.0] - 2022-12-14
 
-### Added
+### [0.3.0] Added
 
 - New random functions to `ProceduralRandom`.
 - New rounding functions to `MathOperations`.
 - `InverseLerp` to `MathOperations`.
 
-### Changed
+### [0.3.0] Changed
 
 - Added dependencies to descriptions.
 - Changed the asmdef names.
@@ -44,18 +50,18 @@
 
 ## [0.2.0] - 2022-04-14
 
-### Added
+### [0.2.0] Added
 
 - Changelog file.
 - Readme file.
 - License file.
 
-### Changed
+### [0.2.0] Changed
 
 - Repository is now a custom package that can be directly imported into Unity.
 
 ## [0.1.0] - 2019-03-10
 
-### Added
+### [0.1.0] Added
 
 - `Librarioh.Math` code.

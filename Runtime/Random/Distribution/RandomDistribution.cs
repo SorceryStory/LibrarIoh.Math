@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace SorceressSpell.LibrarIoh.Math
 {
-    public class RandomDistribution
+    public static class RandomDistribution
     {
         #region Methods
 

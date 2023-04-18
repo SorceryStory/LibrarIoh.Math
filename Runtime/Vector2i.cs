@@ -73,7 +73,7 @@ namespace SorceressSpell.LibrarIoh.Math
             if (ReferenceEquals(a, b)) { return true; }
 
             // If one is null, but not both, return false.
-            if (((object)a == null) || ((object)b == null)) { return false; }
+            if ((a is null) || (b is null)) { return false; }
 
             // Return true if the fields match:
             return a.X == b.X && a.Y == b.Y;
@@ -99,10 +99,7 @@ namespace SorceressSpell.LibrarIoh.Math
 
         public override int GetHashCode()
         {
-            int hashCode = 1861411795;
-            hashCode = hashCode * -1521134295 + X.GetHashCode();
-            hashCode = hashCode * -1521134295 + Y.GetHashCode();
-            return hashCode;
+            return System.HashCode.Combine(X, Y);
         }
 
         public void MultiplyBy(int value)

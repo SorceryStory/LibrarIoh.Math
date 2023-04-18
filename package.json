@@ -1,12 +1,12 @@
 {
   "name": "com.sorceressspell.librarioh.math",
   "displayName": "LibrarIoh.Math",
-  "version": "0.5.1",
+  "version": "0.5.2",
   "type": "library",
   "unity": "2018.1",
   "description": "LibrarIoh.Math (https://github.com/SorceryStory/LibrarIoh.Math)\n\nMath operations and other utilities for LibrarIoh.\n\nDepends on:\n  - LibrarIoh.Core (https://github.com/SorceryStory/LibrarIoh.Core)",
   "dependencies": {
-    "com.sorceressspell.librarioh.core": "0.3.0"
+    "com.sorceressspell.librarioh.core": "0.4.1"
   },
   "author": {
     "name": "Joana Almeida",

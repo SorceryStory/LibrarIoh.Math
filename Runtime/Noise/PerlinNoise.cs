@@ -189,26 +189,27 @@
             ////////////////////////////////////////////////////////////////////////////////////////////
             // A more optimized code to replace the original above
             // Source: http://riven8192.blogspot.com/2010/08/calculate-perlinnoise-twice-as-fast.html
-            switch (hash & 0xF)
+            ////////////////////////////////////////////////////////////////////////////////////////////
+            return (hash & 0xF) switch
             {
-                case 0x0: return x + y;
-                case 0x1: return -x + y;
-                case 0x2: return x - y;
-                case 0x3: return -x - y;
-                case 0x4: return x + z;
-                case 0x5: return -x + z;
-                case 0x6: return x - z;
-                case 0x7: return -x - z;
-                case 0x8: return y + z;
-                case 0x9: return -y + z;
-                case 0xA: return y - z;
-                case 0xB: return -y - z;
-                case 0xC: return y + x;
-                case 0xD: return -y + z;
-                case 0xE: return y - x;
-                case 0xF: return -y - z;
-                default: return 0; // never happens
-            }
+                0x0 => x + y,
+                0x1 => -x + y,
+                0x2 => x - y,
+                0x3 => -x - y,
+                0x4 => x + z,
+                0x5 => -x + z,
+                0x6 => x - z,
+                0x7 => -x - z,
+                0x8 => y + z,
+                0x9 => -y + z,
+                0xA => y - z,
+                0xB => -y - z,
+                0xC => y + x,
+                0xD => -y + z,
+                0xE => y - x,
+                0xF => -y - z,
+                _ => 0, // never happens
+            };
             ////////////////////////////////////////////////////////////////////////////////////////////
         }
 
