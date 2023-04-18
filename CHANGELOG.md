@@ -29,7 +29,7 @@
 - New `RangeSeeded` functions to `ProceduralRandom`.
 - `int` version of `Pow` in `MathOperations`.
 
-### Changed
+### [0.4.0] Changed
 
 - `ProceduralRandom`'s constructor initialization.
 
